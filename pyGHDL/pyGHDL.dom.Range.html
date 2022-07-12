@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyGHDL.dom.Range &mdash; GHDL 3.0.0-dev documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyGHDL.dom.Sequential" href="pyGHDL.dom.Sequential.html" />
+    <link rel="prev" title="pyGHDL.dom.PSL" href="pyGHDL.dom.PSL.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting.html">Getting | Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licenses.html">Copyrights | Licenses</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GHDL usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quick_start/index.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/InvokingGHDL.html">Invoking GHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/Simulation.html">Simulation (runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/Synthesis.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/CommandReference.html">Additional Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/ImplementationOfVHDL.html">Implementation of VHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using/ImplementationOfVITAL.html">Implementation of VITAL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../development/Directories.html">Directory structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/building/index.html">Building GHDL</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="pyGHDL.html">Python Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyGHDL.cli.html">pyGHDL.cli</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="pyGHDL.dom.html">pyGHDL.dom</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Aggregates.html">pyGHDL.dom.Aggregates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Attribute.html">pyGHDL.dom.Attribute</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Concurrent.html">pyGHDL.dom.Concurrent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.DesignUnit.html">pyGHDL.dom.DesignUnit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Expression.html">pyGHDL.dom.Expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.InterfaceItem.html">pyGHDL.dom.InterfaceItem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Literal.html">pyGHDL.dom.Literal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Misc.html">pyGHDL.dom.Misc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Names.html">pyGHDL.dom.Names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.NonStandard.html">pyGHDL.dom.NonStandard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Object.html">pyGHDL.dom.Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.PSL.html">pyGHDL.dom.PSL</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pyGHDL.dom.Range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Sequential.html">pyGHDL.dom.Sequential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Subprogram.html">pyGHDL.dom.Subprogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Symbol.html">pyGHDL.dom.Symbol</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.Type.html">pyGHDL.dom.Type</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom._Translate.html">pyGHDL.dom._Translate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom._Utils.html">pyGHDL.dom._Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyGHDL.dom.formatting.html">pyGHDL.dom.formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyGHDL.libghdl.html">pyGHDL.libghdl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyGHDL.lsp.html">pyGHDL.lsp</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ghw/index.html">GHDL Waveform (GHW)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/Debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/CodingStyle.html">Coding Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/Scripts.html">Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../internals/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/Frontend.html">Front-end</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/AST.html">AST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internals/RTI.html">Run Time Information (RTI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gnatdoc/index.html">GNATdoc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GHDL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="pyGHDL.html">pyGHDL</a> &raquo;</li>
+          <li><a href="pyGHDL.dom.html">pyGHDL.dom</a> &raquo;</li>
+      <li>pyGHDL.dom.Range</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/C-Elegans/ghdl/blob/fix-access-check-failed/doc/pyGHDL/pyGHDL.dom.Range.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pyGHDL.dom.Range">
+<span id="pyghdl-dom-range"></span><h1>pyGHDL.dom.Range<a class="headerlink" href="#module-pyGHDL.dom.Range" title="Permalink to this heading">¶</a></h1>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyGHDL.dom.Range.Range" title="pyGHDL.dom.Range.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">Range</span></code></a>:
+<code class="docutils literal notranslate"><span class="pre">ModelEntity</span></code> is the base-class for all classes in the VHDL language model,</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyGHDL.dom.Range.</span></span><span class="sig-name descname"><span class="pre">Range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">leftBound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rightBound</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyGHDL/dom/Range.html#Range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyGHDL.dom.Range.Range" title="Permalink to this definition">¶</a></dt>
+<dd><p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-f441d1b6fba1f9efbe5a038c0746048ebd268582.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of Range</p></object></div>
+<p class="rubric">Members</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range.Direction">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.html#pyVHDLModel.Direction" title="(in pyVHDLModel v0.15)"><span class="pre">Direction</span></a></em><a class="headerlink" href="#pyGHDL.dom.Range.Range.Direction" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.html#pyVHDLModel.Direction" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Direction</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range.LeftBound">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LeftBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">BaseExpression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.QualifiedExpression" title="pyGHDL.dom.Expression.QualifiedExpression"><span class="pre">QualifiedExpression</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.FunctionCall" title="pyGHDL.dom.Expression.FunctionCall"><span class="pre">FunctionCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.TypeConversion" title="pyGHDL.dom.Expression.TypeConversion"><span class="pre">TypeConversion</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Constant" title="pyGHDL.dom.Object.Constant"><span class="pre">Constant</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ConstantSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Variable" title="pyGHDL.dom.Object.Variable"><span class="pre">Variable</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VariableSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Signal" title="pyGHDL.dom.Object.Signal"><span class="pre">Signal</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SignalSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGHDL.dom.Range.Range.LeftBound" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.BaseExpression" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseExpression</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.QualifiedExpression" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QualifiedExpression</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.FunctionCall" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionCall</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.TypeConversion" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeConversion</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Constant" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.ConstantSymbol" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantSymbol</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Variable" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a>, VariableSymbol, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Signal" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.SignalSymbol" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SignalSymbol</span></code></a>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range.Parent">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.html#pyVHDLModel.ModelEntity" title="(in pyVHDLModel v0.15)"><span class="pre">ModelEntity</span></a></em><a class="headerlink" href="#pyGHDL.dom.Range.Range.Parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a reference to the parent entity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.html#pyVHDLModel.ModelEntity" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelEntity</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range.RightBound">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RightBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">BaseExpression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.QualifiedExpression" title="pyGHDL.dom.Expression.QualifiedExpression"><span class="pre">QualifiedExpression</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.FunctionCall" title="pyGHDL.dom.Expression.FunctionCall"><span class="pre">FunctionCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.TypeConversion" title="pyGHDL.dom.Expression.TypeConversion"><span class="pre">TypeConversion</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Constant" title="pyGHDL.dom.Object.Constant"><span class="pre">Constant</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ConstantSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Variable" title="pyGHDL.dom.Object.Variable"><span class="pre">Variable</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VariableSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Signal" title="pyGHDL.dom.Object.Signal"><span class="pre">Signal</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SignalSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGHDL.dom.Range.Range.RightBound" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.BaseExpression" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseExpression</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.QualifiedExpression" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">QualifiedExpression</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.FunctionCall" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FunctionCall</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.TypeConversion" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeConversion</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Constant" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Constant</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.ConstantSymbol" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantSymbol</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Variable" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></a>, VariableSymbol, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.Signal" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Signal</span></code></a>, <a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.SyntaxModel.html#pyVHDLModel.SyntaxModel.SignalSymbol" title="(in pyVHDLModel v0.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">SignalSymbol</span></code></a>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range._leftBound">
+<span class="sig-name descname"><span class="pre">_leftBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">BaseExpression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.QualifiedExpression" title="pyGHDL.dom.Expression.QualifiedExpression"><span class="pre">QualifiedExpression</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.FunctionCall" title="pyGHDL.dom.Expression.FunctionCall"><span class="pre">FunctionCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.TypeConversion" title="pyGHDL.dom.Expression.TypeConversion"><span class="pre">TypeConversion</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Constant" title="pyGHDL.dom.Object.Constant"><span class="pre">Constant</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ConstantSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Variable" title="pyGHDL.dom.Object.Variable"><span class="pre">Variable</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VariableSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Signal" title="pyGHDL.dom.Object.Signal"><span class="pre">Signal</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SignalSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGHDL.dom.Range.Range._leftBound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range._rightBound">
+<span class="sig-name descname"><span class="pre">_rightBound</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3.6/library/typing.html#typing.Union" title="(in Python v3.6)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">BaseExpression</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.QualifiedExpression" title="pyGHDL.dom.Expression.QualifiedExpression"><span class="pre">QualifiedExpression</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.FunctionCall" title="pyGHDL.dom.Expression.FunctionCall"><span class="pre">FunctionCall</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Expression.html#pyGHDL.dom.Expression.TypeConversion" title="pyGHDL.dom.Expression.TypeConversion"><span class="pre">TypeConversion</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Constant" title="pyGHDL.dom.Object.Constant"><span class="pre">Constant</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ConstantSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Variable" title="pyGHDL.dom.Object.Variable"><span class="pre">Variable</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">VariableSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="pyGHDL.dom.Object.html#pyGHDL.dom.Object.Signal" title="pyGHDL.dom.Object.Signal"><span class="pre">Signal</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">SignalSymbol</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pyGHDL.dom.Range.Range._rightBound" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range._direction">
+<span class="sig-name descname"><span class="pre">_direction</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://vhdl.github.io/pyVHDLModel/pyVHDLModel/pyVHDLModel.html#pyVHDLModel.Direction" title="(in pyVHDLModel v0.15)"><span class="pre">Direction</span></a></em><a class="headerlink" href="#pyGHDL.dom.Range.Range._direction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyGHDL.dom.Range.Range._parent">
+<span class="sig-name descname"><span class="pre">_parent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ModelEntity</span></em><a class="headerlink" href="#pyGHDL.dom.Range.Range._parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference to a parent entity in the model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyGHDL.dom.PSL.html" class="btn btn-neutral float-left" title="pyGHDL.dom.PSL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyGHDL.dom.Sequential.html" class="btn btn-neutral float-right" title="pyGHDL.dom.Sequential" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2002-2021, Tristan Gingold and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

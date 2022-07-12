@@ -1,0 +1,32 @@
+pyGHDL.cli.dom
+==================
+
+.. automodule:: pyGHDL.cli.dom
+
+
+.. currentmodule:: pyGHDL.cli.dom
+
+
+.. #-----------------------------------
+
+
+**Classes**
+
+- :py:class:`Application`:
+  A mixin class (interface) to provide class-local terminal writing methods.
+
+
+
+.. #-----------------------------------
+
+
+.. autoclass:: Application
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Application
+
+   .. rubric:: Members

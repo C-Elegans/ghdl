@@ -1,0 +1,242 @@
+pyGHDL.dom.Sequential
+=========================
+
+.. automodule:: pyGHDL.dom.Sequential
+
+
+.. currentmodule:: pyGHDL.dom.Sequential
+
+
+.. #-----------------------------------
+
+
+**Classes**
+
+- :py:class:`IfBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`ElsifBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`ElseBranch`:
+  A ``Branch`` is a base-class for all branches in a if statement.
+
+- :py:class:`IfStatement`:
+  A ``CompoundStatement`` is a base-class for all compound statements.
+
+- :py:class:`IndexedChoice`:
+  A ``SequentialChoice`` is a base-class for all sequential choices (in case statements).
+
+- :py:class:`RangedChoice`:
+  A ``SequentialChoice`` is a base-class for all sequential choices (in case statements).
+
+- :py:class:`Case`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`OthersCase`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`CaseStatement`:
+  A ``CompoundStatement`` is a base-class for all compound statements.
+
+- :py:class:`ForLoopStatement`:
+  A ``LoopStatement`` is a base-class for all loop statements.
+
+- :py:class:`SequentialSimpleSignalAssignment`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialProcedureCall`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialAssertStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`SequentialReportStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`NullStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+- :py:class:`WaitStatement`:
+  A ``SequentialStatement`` is a base-class for all sequential statements.
+
+
+
+.. #-----------------------------------
+
+
+.. autoclass:: IfBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfBranch
+
+   .. rubric:: Members
+
+.. autoclass:: ElsifBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElsifBranch
+
+   .. rubric:: Members
+
+.. autoclass:: ElseBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElseBranch
+
+   .. rubric:: Members
+
+.. autoclass:: IfStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfStatement
+
+   .. rubric:: Members
+
+.. autoclass:: IndexedChoice
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndexedChoice
+
+   .. rubric:: Members
+
+.. autoclass:: RangedChoice
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RangedChoice
+
+   .. rubric:: Members
+
+.. autoclass:: Case
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Case
+
+   .. rubric:: Members
+
+.. autoclass:: OthersCase
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OthersCase
+
+   .. rubric:: Members
+
+.. autoclass:: CaseStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CaseStatement
+
+   .. rubric:: Members
+
+.. autoclass:: ForLoopStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ForLoopStatement
+
+   .. rubric:: Members
+
+.. autoclass:: SequentialSimpleSignalAssignment
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialSimpleSignalAssignment
+
+   .. rubric:: Members
+
+.. autoclass:: SequentialProcedureCall
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialProcedureCall
+
+   .. rubric:: Members
+
+.. autoclass:: SequentialAssertStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialAssertStatement
+
+   .. rubric:: Members
+
+.. autoclass:: SequentialReportStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: SequentialReportStatement
+
+   .. rubric:: Members
+
+.. autoclass:: NullStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: NullStatement
+
+   .. rubric:: Members
+
+.. autoclass:: WaitStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: WaitStatement
+
+   .. rubric:: Members

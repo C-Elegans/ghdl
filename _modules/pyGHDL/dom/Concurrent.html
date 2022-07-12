@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyGHDL.dom.Concurrent &mdash; GHDL 3.0.0-dev documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/theme_overrides.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/icon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting.html">Getting | Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contribute.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../licenses.html">Copyrights | Licenses</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">GHDL usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../quick_start/index.html">Quick Start Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/InvokingGHDL.html">Invoking GHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/Simulation.html">Simulation (runtime)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/Synthesis.html">Synthesis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/CommandReference.html">Additional Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/ImplementationOfVHDL.html">Implementation of VHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using/ImplementationOfVITAL.html">Implementation of VITAL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Directories.html">Directory structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/building/index.html">Building GHDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyGHDL/pyGHDL.html">Python Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ghw/index.html">GHDL Waveform (GHW)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Debugging.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/CodingStyle.html">Coding Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development/Scripts.html">Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Internals</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/Frontend.html">Front-end</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/AST.html">AST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../internals/RTI.html">Run Time Information (RTI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../gnatdoc/index.html">GNATdoc</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Python Module Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">GHDL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+          <li><a href="../../pyGHDL.html">pyGHDL</a> &raquo;</li>
+          <li><a href="../dom.html">pyGHDL.dom</a> &raquo;</li>
+      <li>pyGHDL.dom.Concurrent</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyGHDL.dom.Concurrent</h1><div class="highlight"><pre>
+<span></span><span class="c1"># =============================================================================</span>
+<span class="c1">#               ____ _   _ ____  _          _</span>
+<span class="c1">#  _ __  _   _ / ___| | | |  _ \| |      __| | ___  _ __ ___</span>
+<span class="c1"># | &#39;_ \| | | | |  _| |_| | | | | |     / _` |/ _ \| &#39;_ ` _ \</span>
+<span class="c1"># | |_) | |_| | |_| |  _  | |_| | |___ | (_| | (_) | | | | | |</span>
+<span class="c1"># | .__/ \__, |\____|_| |_|____/|_____(_)__,_|\___/|_| |_| |_|</span>
+<span class="c1"># |_|    |___/</span>
+<span class="c1"># =============================================================================</span>
+<span class="c1"># Authors:</span>
+<span class="c1">#   Patrick Lehmann</span>
+<span class="c1">#</span>
+<span class="c1"># Package module:   DOM: Concurrent statements.</span>
+<span class="c1">#</span>
+<span class="c1"># License:</span>
+<span class="c1"># ============================================================================</span>
+<span class="c1">#  Copyright (C) 2019-2021 Tristan Gingold</span>
+<span class="c1">#</span>
+<span class="c1">#  This program is free software: you can redistribute it and/or modify</span>
+<span class="c1">#  it under the terms of the GNU General Public License as published by</span>
+<span class="c1">#  the Free Software Foundation, either version 2 of the License, or</span>
+<span class="c1">#  (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1">#  This program is distributed in the hope that it will be useful,</span>
+<span class="c1">#  but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1">#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1">#  GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1">#  You should have received a copy of the GNU General Public License</span>
+<span class="c1">#  along with this program.  If not, see &lt;gnu.org/licenses&gt;.</span>
+<span class="c1">#</span>
+<span class="c1"># SPDX-License-Identifier: GPL-2.0-or-later</span>
+<span class="c1"># ============================================================================</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterable</span>
+
+<span class="kn">from</span> <span class="nn">pyTooling.Decorators</span> <span class="kn">import</span> <span class="n">export</span>
+
+<span class="kn">from</span> <span class="nn">pyGHDL.dom.Range</span> <span class="kn">import</span> <span class="n">Range</span>
+<span class="kn">from</span> <span class="nn">pyVHDLModel.SyntaxModel</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GenericAssociationItem</span> <span class="k">as</span> <span class="n">VHDLModel_GenericAssociationItem</span><span class="p">,</span>
+    <span class="n">PortAssociationItem</span> <span class="k">as</span> <span class="n">VHDLModel_PortAssociationItem</span><span class="p">,</span>
+    <span class="n">ParameterAssociationItem</span> <span class="k">as</span> <span class="n">VHDLModel_ParameterAssociationItem</span><span class="p">,</span>
+    <span class="n">ComponentInstantiation</span> <span class="k">as</span> <span class="n">VHDLModel_ComponentInstantiation</span><span class="p">,</span>
+    <span class="n">EntityInstantiation</span> <span class="k">as</span> <span class="n">VHDLModel_EntityInstantiation</span><span class="p">,</span>
+    <span class="n">ConfigurationInstantiation</span> <span class="k">as</span> <span class="n">VHDLModel_ConfigurationInstantiation</span><span class="p">,</span>
+    <span class="n">ConcurrentBlockStatement</span> <span class="k">as</span> <span class="n">VHDLModel_ConcurrentBlockStatement</span><span class="p">,</span>
+    <span class="n">ProcessStatement</span> <span class="k">as</span> <span class="n">VHDLModel_ProcessStatement</span><span class="p">,</span>
+    <span class="n">IfGenerateBranch</span> <span class="k">as</span> <span class="n">VHDLModel_IfGenerateBranch</span><span class="p">,</span>
+    <span class="n">ElsifGenerateBranch</span> <span class="k">as</span> <span class="n">VHDLModel_ElsifGenerateBranch</span><span class="p">,</span>
+    <span class="n">ElseGenerateBranch</span> <span class="k">as</span> <span class="n">VHDLModel_ElseGenerateBranch</span><span class="p">,</span>
+    <span class="n">IfGenerateStatement</span> <span class="k">as</span> <span class="n">VHDLModel_IfGenerateStatement</span><span class="p">,</span>
+    <span class="n">IndexedGenerateChoice</span> <span class="k">as</span> <span class="n">VHDLModel_IndexedGenerateChoice</span><span class="p">,</span>
+    <span class="n">RangedGenerateChoice</span> <span class="k">as</span> <span class="n">VHDLModel_RangedGenerateChoice</span><span class="p">,</span>
+    <span class="n">OthersGenerateCase</span> <span class="k">as</span> <span class="n">VHDLModel_OthersGenerateCase</span><span class="p">,</span>
+    <span class="n">GenerateCase</span> <span class="k">as</span> <span class="n">VHDLModel_GenerateCase</span><span class="p">,</span>
+    <span class="n">CaseGenerateStatement</span> <span class="k">as</span> <span class="n">VHDLModel_CaseGenerateStatement</span><span class="p">,</span>
+    <span class="n">ForGenerateStatement</span> <span class="k">as</span> <span class="n">VHDLModel_ForGenerateStatement</span><span class="p">,</span>
+    <span class="n">WaveformElement</span> <span class="k">as</span> <span class="n">VHDLModel_WaveformElement</span><span class="p">,</span>
+    <span class="n">ConcurrentSimpleSignalAssignment</span> <span class="k">as</span> <span class="n">VHDLModel_ConcurrentSimpleSignalAssignment</span><span class="p">,</span>
+    <span class="n">ConcurrentProcedureCall</span> <span class="k">as</span> <span class="n">VHDLModel_ConcurrentProcedureCall</span><span class="p">,</span>
+    <span class="n">ConcurrentAssertStatement</span> <span class="k">as</span> <span class="n">VHDLModel_ConcurrentAssertStatement</span><span class="p">,</span>
+    <span class="n">Name</span><span class="p">,</span>
+    <span class="n">ConcurrentStatement</span><span class="p">,</span>
+    <span class="n">SequentialStatement</span><span class="p">,</span>
+    <span class="n">ExpressionUnion</span><span class="p">,</span>
+    <span class="n">ConcurrentChoice</span><span class="p">,</span>
+    <span class="n">ConcurrentCase</span><span class="p">,</span>
+    <span class="n">AssociationItem</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pyGHDL.libghdl</span> <span class="kn">import</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">utils</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.libghdl.vhdl</span> <span class="kn">import</span> <span class="n">nodes</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.dom</span> <span class="kn">import</span> <span class="n">DOMMixin</span><span class="p">,</span> <span class="n">DOMException</span><span class="p">,</span> <span class="n">Position</span>
+<span class="kn">from</span> <span class="nn">pyGHDL.dom._Utils</span> <span class="kn">import</span> <span class="n">GetNameOfNode</span>
+
+
+<div class="viewcode-block" id="GenericAssociationItem"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.GenericAssociationItem">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">GenericAssociationItem</span><span class="p">(</span><span class="n">VHDLModel_GenericAssociationItem</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span> <span class="n">formal</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">formal</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PortAssociationItem"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.PortAssociationItem">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">PortAssociationItem</span><span class="p">(</span><span class="n">VHDLModel_PortAssociationItem</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span> <span class="n">formal</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">formal</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ParameterAssociationItem"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ParameterAssociationItem">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ParameterAssociationItem</span><span class="p">(</span><span class="n">VHDLModel_ParameterAssociationItem</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">actual</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span> <span class="n">formal</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">actual</span><span class="p">,</span> <span class="n">formal</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">associationNode</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ComponentInstantiation"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ComponentInstantiation">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ComponentInstantiation</span><span class="p">(</span><span class="n">VHDLModel_ComponentInstantiation</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">componentName</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span>
+        <span class="n">genericAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">portAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">componentName</span><span class="p">,</span> <span class="n">genericAssociations</span><span class="p">,</span> <span class="n">portAssociations</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ComponentInstantiation.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ComponentInstantiation.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">instantiatedUnit</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ComponentInstantiation&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetNameFromNode</span><span class="p">,</span>
+            <span class="n">GetGenericMapAspect</span><span class="p">,</span>
+            <span class="n">GetPortMapAspect</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">componentName</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">instantiatedUnit</span><span class="p">)</span>
+        <span class="n">genericAssociations</span> <span class="o">=</span> <span class="n">GetGenericMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generic_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+        <span class="n">portAssociations</span> <span class="o">=</span> <span class="n">GetPortMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Port_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">instantiationNode</span><span class="p">,</span>
+            <span class="n">label</span><span class="p">,</span>
+            <span class="n">componentName</span><span class="p">,</span>
+            <span class="n">genericAssociations</span><span class="p">,</span>
+            <span class="n">portAssociations</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="EntityInstantiation"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.EntityInstantiation">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">EntityInstantiation</span><span class="p">(</span><span class="n">VHDLModel_EntityInstantiation</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">entityName</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span>
+        <span class="n">architectureName</span><span class="p">:</span> <span class="n">Name</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">genericAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">portAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">entityName</span><span class="p">,</span> <span class="n">architectureName</span><span class="p">,</span> <span class="n">genericAssociations</span><span class="p">,</span> <span class="n">portAssociations</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="EntityInstantiation.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.EntityInstantiation.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">instantiatedUnit</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;EntityInstantiation&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetNameFromNode</span><span class="p">,</span>
+            <span class="n">GetGenericMapAspect</span><span class="p">,</span>
+            <span class="n">GetPortMapAspect</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">entityId</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Entity_Name</span><span class="p">(</span><span class="n">instantiatedUnit</span><span class="p">)</span>
+        <span class="n">entityName</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">entityId</span><span class="p">)</span>
+
+        <span class="n">architectureName</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">architectureId</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Architecture</span><span class="p">(</span><span class="n">instantiatedUnit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">architectureId</span> <span class="o">!=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span><span class="p">:</span>
+            <span class="n">architectureName</span> <span class="o">=</span> <span class="n">GetNameOfNode</span><span class="p">(</span><span class="n">architectureId</span><span class="p">)</span>
+
+        <span class="n">genericAssociations</span> <span class="o">=</span> <span class="n">GetGenericMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generic_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+        <span class="n">portAssociations</span> <span class="o">=</span> <span class="n">GetPortMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Port_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">instantiationNode</span><span class="p">,</span>
+            <span class="n">label</span><span class="p">,</span>
+            <span class="n">entityName</span><span class="p">,</span>
+            <span class="n">architectureName</span><span class="p">,</span>
+            <span class="n">genericAssociations</span><span class="p">,</span>
+            <span class="n">portAssociations</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ConfigurationInstantiation"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConfigurationInstantiation">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ConfigurationInstantiation</span><span class="p">(</span><span class="n">VHDLModel_ConfigurationInstantiation</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">configurationName</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span>
+        <span class="n">genericAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">portAssociations</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">AssociationItem</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">configurationName</span><span class="p">,</span> <span class="n">genericAssociations</span><span class="p">,</span> <span class="n">portAssociations</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConfigurationInstantiation.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConfigurationInstantiation.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instantiationNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">instantiatedUnit</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConfigurationInstantiation&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetNameFromNode</span><span class="p">,</span>
+            <span class="n">GetGenericMapAspect</span><span class="p">,</span>
+            <span class="n">GetPortMapAspect</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">configurationId</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Configuration_Name</span><span class="p">(</span><span class="n">instantiatedUnit</span><span class="p">)</span>
+        <span class="n">configurationName</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">configurationId</span><span class="p">)</span>
+
+        <span class="n">genericAssociations</span> <span class="o">=</span> <span class="n">GetGenericMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generic_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+        <span class="n">portAssociations</span> <span class="o">=</span> <span class="n">GetPortMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Port_Map_Aspect_Chain</span><span class="p">(</span><span class="n">instantiationNode</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">instantiationNode</span><span class="p">,</span>
+            <span class="n">label</span><span class="p">,</span>
+            <span class="n">configurationName</span><span class="p">,</span>
+            <span class="n">genericAssociations</span><span class="p">,</span>
+            <span class="n">portAssociations</span><span class="p">,</span>
+        <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ConcurrentBlockStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentBlockStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ConcurrentBlockStatement</span><span class="p">(</span><span class="n">VHDLModel_ConcurrentBlockStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">blockNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="s2">&quot;ConcurrentStatement&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blockNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConcurrentBlockStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentBlockStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">blockNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConcurrentBlockStatement&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1">#        genericAssociations = GetGenericMapAspect(nodes.Get_Generic_Map_Aspect_Chain(instantiationNode))</span>
+        <span class="c1">#        portAssociations = GetPortMapAspect(nodes.Get_Port_Map_Aspect_Chain(instantiationNode))</span>
+
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">blockNode</span><span class="p">),</span> <span class="s2">&quot;block&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">blockNode</span><span class="p">),</span> <span class="s2">&quot;block&quot;</span><span class="p">,</span> <span class="n">label</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">blockNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ProcessStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ProcessStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ProcessStatement</span><span class="p">(</span><span class="n">VHDLModel_ProcessStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">processNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">SequentialStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">sensitivityList</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">sensitivityList</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">processNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ProcessStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ProcessStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">processNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">hasSensitivityList</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ProcessStatement&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetSequentialStatementsFromChainedNodes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">sensitivityList</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">hasSensitivityList</span><span class="p">:</span>
+            <span class="n">sensitivityList</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">utils</span><span class="o">.</span><span class="n">list_iter</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Sensitivity_List</span><span class="p">(</span><span class="n">processNode</span><span class="p">)):</span>
+                <span class="n">sensitivityList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GetNameOfNode</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">processNode</span><span class="p">),</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetSequentialStatementsFromChainedNodes</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Sequential_Statement_Chain</span><span class="p">(</span><span class="n">processNode</span><span class="p">),</span> <span class="s2">&quot;process&quot;</span><span class="p">,</span> <span class="n">label</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">processNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">sensitivityList</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="IfGenerateBranch"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.IfGenerateBranch">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">IfGenerateBranch</span><span class="p">(</span><span class="n">VHDLModel_IfGenerateBranch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">branchNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">condition</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">alternativeLabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branchNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IfGenerateBranch.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.IfGenerateBranch.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IfGenerateBranch&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetExpressionFromNode</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">condition</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Condition</span><span class="p">(</span><span class="n">generateNode</span><span class="p">))</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Statement_Body</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+
+        <span class="c1"># TODO: alternative label</span>
+        <span class="c1"># alternativeLabelId = nodes.Get_Alternative_Label(body)</span>
+        <span class="n">alternativeLabel</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;if-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;if-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ElsifGenerateBranch"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ElsifGenerateBranch">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ElsifGenerateBranch</span><span class="p">(</span><span class="n">VHDLModel_ElsifGenerateBranch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">branchNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">condition</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">alternativeLabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branchNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ElsifGenerateBranch.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ElsifGenerateBranch.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">condition</span><span class="p">:</span> <span class="n">Iir</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ElsifGenerateBranch&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetExpressionFromNode</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">condition</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Statement_Body</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+
+        <span class="c1"># TODO: alternative label</span>
+        <span class="c1"># alternativeLabelId = nodes.Get_Alternative_Label(body)</span>
+        <span class="n">alternativeLabel</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;elsif-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;elsif-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ElseGenerateBranch"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ElseGenerateBranch">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ElseGenerateBranch</span><span class="p">(</span><span class="n">VHDLModel_ElseGenerateBranch</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">branchNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">alternativeLabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">branchNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ElseGenerateBranch.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ElseGenerateBranch.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ElseGenerateBranch&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Statement_Body</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+
+        <span class="c1"># TODO: alternative label</span>
+        <span class="c1"># alternativeLabelId = nodes.Get_Alternative_Label(body)</span>
+        <span class="n">alternativeLabel</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;else-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;else-generate branch&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="IfGenerateStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.IfGenerateStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">IfGenerateStatement</span><span class="p">(</span><span class="n">VHDLModel_IfGenerateStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">ifBranch</span><span class="p">:</span> <span class="n">IfGenerateBranch</span><span class="p">,</span>
+        <span class="n">elsifBranches</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ElsifGenerateBranch</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">elseBranch</span><span class="p">:</span> <span class="n">ElseGenerateBranch</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">ifBranch</span><span class="p">,</span> <span class="n">elsifBranches</span><span class="p">,</span> <span class="n">elseBranch</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IfGenerateStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.IfGenerateStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;IfGenerateStatement&quot;</span><span class="p">:</span>
+        <span class="n">ifBranch</span> <span class="o">=</span> <span class="n">IfGenerateBranch</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+        <span class="n">elsifBranches</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">elseBranch</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># WORKAROUND: Python 3.8 syntax</span>
+        <span class="c1"># elseClause = generateNode</span>
+        <span class="c1"># while (elseClause := nodes.Get_Generate_Else_Clause(elseClause)) != nodes.Null_Iir:</span>
+        <span class="n">elseClause</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Else_Clause</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">elseClause</span> <span class="o">!=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span><span class="p">:</span>
+            <span class="n">condition</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Condition</span><span class="p">(</span><span class="n">elseClause</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">condition</span> <span class="o">!=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span><span class="p">:</span>
+                <span class="n">elsifBranches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ElsifGenerateBranch</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">elseClause</span><span class="p">,</span> <span class="n">condition</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">elseBranch</span> <span class="o">=</span> <span class="n">ElseGenerateBranch</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">elseClause</span><span class="p">)</span>
+                <span class="k">break</span>
+
+            <span class="n">elseClause</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Else_Clause</span><span class="p">(</span><span class="n">elseClause</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ifBranch</span><span class="p">,</span> <span class="n">elsifBranches</span><span class="p">,</span> <span class="n">elseBranch</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="IndexedGenerateChoice"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.IndexedGenerateChoice">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">IndexedGenerateChoice</span><span class="p">(</span><span class="n">VHDLModel_IndexedGenerateChoice</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">expression</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RangedGenerateChoice"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.RangedGenerateChoice">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">RangedGenerateChoice</span><span class="p">(</span><span class="n">VHDLModel_RangedGenerateChoice</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">rng</span><span class="p">:</span> <span class="n">Range</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">rng</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenerateCase"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.GenerateCase">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">GenerateCase</span><span class="p">(</span><span class="n">VHDLModel_GenerateCase</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">node</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">choices</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentChoice</span><span class="p">],</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">alternativeLabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">choices</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GenerateCase.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.GenerateCase.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">caseNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">choices</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentChoice</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">&quot;GenerateCase&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Associated_Block</span><span class="p">(</span><span class="n">caseNode</span><span class="p">)</span>
+
+        <span class="c1"># TODO: alternative label</span>
+        <span class="c1"># alternativeLabelId = nodes.Get_Alternative_Label(body)</span>
+        <span class="n">alternativeLabel</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;generate case&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;generate case&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">caseNode</span><span class="p">,</span> <span class="n">choices</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="OthersGenerateCase"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.OthersGenerateCase">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">OthersGenerateCase</span><span class="p">(</span><span class="n">VHDLModel_OthersGenerateCase</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">caseNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">alternativeLabel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">caseNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="OthersGenerateCase.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.OthersGenerateCase.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">caseNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OthersGenerateCase&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Associated_Block</span><span class="p">(</span><span class="n">caseNode</span><span class="p">)</span>
+
+        <span class="c1"># TODO: alternative label</span>
+        <span class="c1"># alternativeLabelId = nodes.Get_Alternative_Label(body)</span>
+        <span class="n">alternativeLabel</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;case-generate others&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;case-generate others&quot;</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">caseNode</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">,</span> <span class="n">alternativeLabel</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CaseGenerateStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.CaseGenerateStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">CaseGenerateStatement</span><span class="p">(</span><span class="n">VHDLModel_CaseGenerateStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">expression</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span>
+        <span class="n">cases</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentCase</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="n">cases</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CaseGenerateStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.CaseGenerateStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;CaseGenerateStatement&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Utils</span> <span class="kn">import</span> <span class="n">GetIirKindOfNode</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetExpressionFromNode</span><span class="p">,</span>
+            <span class="n">GetRangeFromNode</span><span class="p">,</span>
+            <span class="n">GetNameFromNode</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">expression</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Expression</span><span class="p">(</span><span class="n">generateNode</span><span class="p">))</span>
+
+        <span class="n">cases</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">choices</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">alternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Case_Statement_Alternative_Chain</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+        <span class="n">caseNode</span> <span class="o">=</span> <span class="n">alternative</span>
+
+        <span class="k">while</span> <span class="n">alternative</span> <span class="o">!=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span><span class="p">:</span>
+            <span class="n">choiceKind</span> <span class="o">=</span> <span class="n">GetIirKindOfNode</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+            <span class="n">sameAlternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Same_Alternative_Flag</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">choiceKind</span> <span class="ow">in</span> <span class="p">(</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Choice_By_Name</span><span class="p">,</span>
+                <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Choice_By_Expression</span><span class="p">,</span>
+            <span class="p">):</span>
+                <span class="n">choiceExpression</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Choice_Expression</span><span class="p">(</span><span class="n">alternative</span><span class="p">))</span>
+
+                <span class="n">choice</span> <span class="o">=</span> <span class="n">IndexedGenerateChoice</span><span class="p">(</span><span class="n">alternative</span><span class="p">,</span> <span class="n">choiceExpression</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sameAlternative</span><span class="p">:</span>
+                    <span class="n">choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+                    <span class="n">alternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Chain</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                    <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">choiceKind</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Choice_By_Range</span><span class="p">:</span>
+                <span class="n">choiceRange</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Choice_Range</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                <span class="n">choiceRangeKind</span> <span class="o">=</span> <span class="n">GetIirKindOfNode</span><span class="p">(</span><span class="n">choiceRange</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">choiceRangeKind</span> <span class="o">==</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Range_Expression</span><span class="p">:</span>
+                    <span class="n">rng</span> <span class="o">=</span> <span class="n">GetRangeFromNode</span><span class="p">(</span><span class="n">choiceRange</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">choiceRangeKind</span> <span class="ow">in</span> <span class="p">(</span>
+                    <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Attribute_Name</span><span class="p">,</span>
+                    <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Parenthesis_Name</span><span class="p">,</span>
+                <span class="p">):</span>
+                    <span class="n">rng</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">choiceRange</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">pos</span> <span class="o">=</span> <span class="n">Position</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                    <span class="k">raise</span> <span class="n">DOMException</span><span class="p">(</span>
+                        <span class="s2">&quot;Unknown choice range kind &#39;</span><span class="si">{kind}</span><span class="s2">&#39; in case...generate statement at line </span><span class="si">{line}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                            <span class="n">kind</span><span class="o">=</span><span class="n">choiceRangeKind</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="n">pos</span><span class="o">.</span><span class="n">Line</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+
+                <span class="n">choice</span> <span class="o">=</span> <span class="n">RangedGenerateChoice</span><span class="p">(</span><span class="n">alternative</span><span class="p">,</span> <span class="n">rng</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sameAlternative</span><span class="p">:</span>
+                    <span class="n">choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">choice</span><span class="p">)</span>
+                    <span class="n">alternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Chain</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                    <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">choiceKind</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Choice_By_Others</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GenerateCase</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">alternative</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+                    <span class="n">choices</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">OthersGenerateCase</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">alternative</span><span class="p">))</span>
+                <span class="n">alternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Chain</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                <span class="n">caseNode</span> <span class="o">=</span> <span class="n">alternative</span>
+                <span class="k">continue</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pos</span> <span class="o">=</span> <span class="n">Position</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">DOMException</span><span class="p">(</span>
+                    <span class="s2">&quot;Unknown choice kind &#39;</span><span class="si">{kind}</span><span class="s2">&#39; in case...generate statement at line </span><span class="si">{line}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">kind</span><span class="o">=</span><span class="n">choiceKind</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="n">pos</span><span class="o">.</span><span class="n">Line</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GenerateCase</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">caseNode</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+
+            <span class="n">caseNode</span> <span class="o">=</span> <span class="n">alternative</span>
+            <span class="n">choices</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">choice</span><span class="p">,</span>
+            <span class="p">]</span>
+
+            <span class="n">alternative</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Chain</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">choices</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GenerateCase</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">caseNode</span><span class="p">,</span> <span class="n">choices</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="n">cases</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ForGenerateStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ForGenerateStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ForGenerateStatement</span><span class="p">(</span><span class="n">VHDLModel_ForGenerateStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">loopIndex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rng</span><span class="p">:</span> <span class="n">Range</span><span class="p">,</span>
+        <span class="n">declaredItems</span><span class="p">:</span> <span class="n">Iterable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">statements</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">ConcurrentStatement</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">loopIndex</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ForGenerateStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ForGenerateStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">generateNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ForGenerateStatement&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Utils</span> <span class="kn">import</span> <span class="n">GetIirKindOfNode</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="p">(</span>
+            <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">,</span>
+            <span class="n">GetRangeFromNode</span><span class="p">,</span>
+            <span class="n">GetNameFromNode</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">spec</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Parameter_Specification</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+        <span class="n">loopIndex</span> <span class="o">=</span> <span class="n">GetNameOfNode</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+
+        <span class="n">discreteRange</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Discrete_Range</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+        <span class="n">rangeKind</span> <span class="o">=</span> <span class="n">GetIirKindOfNode</span><span class="p">(</span><span class="n">discreteRange</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rangeKind</span> <span class="o">==</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Range_Expression</span><span class="p">:</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="n">GetRangeFromNode</span><span class="p">(</span><span class="n">discreteRange</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">rangeKind</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Attribute_Name</span><span class="p">,</span>
+            <span class="n">nodes</span><span class="o">.</span><span class="n">Iir_Kind</span><span class="o">.</span><span class="n">Parenthesis_Name</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="n">rng</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">discreteRange</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">Position</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">DOMException</span><span class="p">(</span>
+                <span class="s2">&quot;Unknown discete range kind &#39;</span><span class="si">{kind}</span><span class="s2">&#39; in for...generate statement at line </span><span class="si">{line}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">kind</span><span class="o">=</span><span class="n">rangeKind</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="n">pos</span><span class="o">.</span><span class="n">Line</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Generate_Statement_Body</span><span class="p">(</span><span class="n">generateNode</span><span class="p">)</span>
+        <span class="n">declarationChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Declaration_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">declaredItems</span> <span class="o">=</span> <span class="n">GetDeclaredItemsFromChainedNodes</span><span class="p">(</span><span class="n">declarationChain</span><span class="p">,</span> <span class="s2">&quot;for-generate&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+        <span class="n">statementChain</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Concurrent_Statement_Chain</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">statements</span> <span class="o">=</span> <span class="n">GetConcurrentStatementsFromChainedNodes</span><span class="p">(</span><span class="n">statementChain</span><span class="p">,</span> <span class="s2">&quot;for-generate&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">generateNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">loopIndex</span><span class="p">,</span> <span class="n">rng</span><span class="p">,</span> <span class="n">declaredItems</span><span class="p">,</span> <span class="n">statements</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="WaveformElement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.WaveformElement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">WaveformElement</span><span class="p">(</span><span class="n">VHDLModel_WaveformElement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">expression</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span> <span class="n">after</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">expression</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">waveNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="WaveformElement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.WaveformElement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">waveNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="n">GetExpressionFromNode</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_We_Value</span><span class="p">(</span><span class="n">waveNode</span><span class="p">))</span>
+
+        <span class="n">timeNode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Time</span><span class="p">(</span><span class="n">waveNode</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">timeNode</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">timeNode</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">waveNode</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ConcurrentSimpleSignalAssignment"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentSimpleSignalAssignment">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ConcurrentSimpleSignalAssignment</span><span class="p">(</span><span class="n">VHDLModel_ConcurrentSimpleSignalAssignment</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">assignmentNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">target</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span>
+        <span class="n">waveform</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">WaveformElement</span><span class="p">],</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">waveform</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assignmentNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConcurrentSimpleSignalAssignment.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentSimpleSignalAssignment.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">assignmentNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConcurrentSimpleSignalAssignment&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="n">GetNameFromNode</span>
+
+        <span class="n">target</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Target</span><span class="p">(</span><span class="n">assignmentNode</span><span class="p">)</span>
+        <span class="n">targetName</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+        <span class="n">waveform</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="n">utils</span><span class="o">.</span><span class="n">chain_iter</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Waveform_Chain</span><span class="p">(</span><span class="n">assignmentNode</span><span class="p">)):</span>
+            <span class="n">waveform</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WaveformElement</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">wave</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">assignmentNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">targetName</span><span class="p">,</span> <span class="n">waveform</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ConcurrentProcedureCall"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentProcedureCall">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ConcurrentProcedureCall</span><span class="p">(</span><span class="n">VHDLModel_ConcurrentProcedureCall</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">callNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">procedureName</span><span class="p">:</span> <span class="n">Name</span><span class="p">,</span>
+        <span class="n">parameterMappings</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">procedureName</span><span class="p">,</span> <span class="n">parameterMappings</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConcurrentProcedureCall.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentProcedureCall.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">concurrentCallNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConcurrentProcedureCall&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="n">GetNameFromNode</span><span class="p">,</span> <span class="n">GetParameterMapAspect</span>
+
+        <span class="n">callNode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Procedure_Call</span><span class="p">(</span><span class="n">concurrentCallNode</span><span class="p">)</span>
+
+        <span class="n">prefix</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Prefix</span><span class="p">(</span><span class="n">callNode</span><span class="p">)</span>
+        <span class="n">procedureName</span> <span class="o">=</span> <span class="n">GetNameFromNode</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+        <span class="n">parameterAssociations</span> <span class="o">=</span> <span class="n">GetParameterMapAspect</span><span class="p">(</span><span class="n">nodes</span><span class="o">.</span><span class="n">Get_Parameter_Association_Chain</span><span class="p">(</span><span class="n">callNode</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">concurrentCallNode</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">procedureName</span><span class="p">,</span> <span class="n">parameterAssociations</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="ConcurrentAssertStatement"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentAssertStatement">[docs]</a><span class="nd">@export</span>
+<span class="k">class</span> <span class="nc">ConcurrentAssertStatement</span><span class="p">(</span><span class="n">VHDLModel_ConcurrentAssertStatement</span><span class="p">,</span> <span class="n">DOMMixin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">assertNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span>
+        <span class="n">condition</span><span class="p">:</span> <span class="n">ExpressionUnion</span><span class="p">,</span>
+        <span class="n">message</span><span class="p">:</span> <span class="n">ExpressionUnion</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">severity</span><span class="p">:</span> <span class="n">ExpressionUnion</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+        <span class="n">DOMMixin</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assertNode</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ConcurrentAssertStatement.parse"><a class="viewcode-back" href="../../../pyGHDL/pyGHDL.dom.Concurrent.html#pyGHDL.dom.Concurrent.ConcurrentAssertStatement.parse">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">assertNode</span><span class="p">:</span> <span class="n">Iir</span><span class="p">,</span> <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ConcurrentAssertStatement&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">pyGHDL.dom._Translate</span> <span class="kn">import</span> <span class="n">GetExpressionFromNode</span>
+
+        <span class="c1"># FIXME: how to get the condition?</span>
+        <span class="c1"># assertNode is a Psl_Assert_Directive</span>
+        <span class="n">condition</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># GetExpressionFromNode(nodes.Get_Assertion_Condition(assertNode))</span>
+        <span class="n">messageNode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Report_Expression</span><span class="p">(</span><span class="n">assertNode</span><span class="p">)</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">messageNode</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span> <span class="k">else</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">messageNode</span><span class="p">)</span>
+        <span class="n">severityNode</span> <span class="o">=</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Get_Severity_Expression</span><span class="p">(</span><span class="n">assertNode</span><span class="p">)</span>
+        <span class="n">severity</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">severityNode</span> <span class="ow">is</span> <span class="n">nodes</span><span class="o">.</span><span class="n">Null_Iir</span> <span class="k">else</span> <span class="n">GetExpressionFromNode</span><span class="p">(</span><span class="n">severityNode</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">assertNode</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">severity</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2002-2021, Tristan Gingold and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

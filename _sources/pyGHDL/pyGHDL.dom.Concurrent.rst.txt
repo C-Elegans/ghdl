@@ -1,0 +1,326 @@
+pyGHDL.dom.Concurrent
+=========================
+
+.. automodule:: pyGHDL.dom.Concurrent
+
+
+.. currentmodule:: pyGHDL.dom.Concurrent
+
+
+.. #-----------------------------------
+
+
+**Classes**
+
+- :py:class:`GenericAssociationItem`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model,
+
+- :py:class:`PortAssociationItem`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model,
+
+- :py:class:`ParameterAssociationItem`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model,
+
+- :py:class:`ComponentInstantiation`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`EntityInstantiation`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`ConfigurationInstantiation`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`ConcurrentBlockStatement`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`ProcessStatement`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`IfGenerateBranch`:
+  A ``GenerateBranch`` is a base-class for all branches in a generate statements.
+
+- :py:class:`ElsifGenerateBranch`:
+  A ``GenerateBranch`` is a base-class for all branches in a generate statements.
+
+- :py:class:`ElseGenerateBranch`:
+  A ``GenerateBranch`` is a base-class for all branches in a generate statements.
+
+- :py:class:`IfGenerateStatement`:
+  A ``GenerateStatement`` is a base-class for all generate statements.
+
+- :py:class:`IndexedGenerateChoice`:
+  A ``ConcurrentChoice`` is a base-class for all concurrent choices (in case...generate statements).
+
+- :py:class:`RangedGenerateChoice`:
+  A ``ConcurrentChoice`` is a base-class for all concurrent choices (in case...generate statements).
+
+- :py:class:`GenerateCase`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`OthersGenerateCase`:
+  A ``Case`` is a base-class for all cases.
+
+- :py:class:`CaseGenerateStatement`:
+  A ``GenerateStatement`` is a base-class for all generate statements.
+
+- :py:class:`ForGenerateStatement`:
+  A ``GenerateStatement`` is a base-class for all generate statements.
+
+- :py:class:`WaveformElement`:
+  ``ModelEntity`` is the base-class for all classes in the VHDL language model,
+
+- :py:class:`ConcurrentSimpleSignalAssignment`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`ConcurrentProcedureCall`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+- :py:class:`ConcurrentAssertStatement`:
+  A ``ConcurrentStatement`` is a base-class for all concurrent statements.
+
+
+
+.. #-----------------------------------
+
+
+.. autoclass:: GenericAssociationItem
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: GenericAssociationItem
+
+   .. rubric:: Members
+
+.. autoclass:: PortAssociationItem
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PortAssociationItem
+
+   .. rubric:: Members
+
+.. autoclass:: ParameterAssociationItem
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ParameterAssociationItem
+
+   .. rubric:: Members
+
+.. autoclass:: ComponentInstantiation
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ComponentInstantiation
+
+   .. rubric:: Members
+
+.. autoclass:: EntityInstantiation
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: EntityInstantiation
+
+   .. rubric:: Members
+
+.. autoclass:: ConfigurationInstantiation
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConfigurationInstantiation
+
+   .. rubric:: Members
+
+.. autoclass:: ConcurrentBlockStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConcurrentBlockStatement
+
+   .. rubric:: Members
+
+.. autoclass:: ProcessStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ProcessStatement
+
+   .. rubric:: Members
+
+.. autoclass:: IfGenerateBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfGenerateBranch
+
+   .. rubric:: Members
+
+.. autoclass:: ElsifGenerateBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElsifGenerateBranch
+
+   .. rubric:: Members
+
+.. autoclass:: ElseGenerateBranch
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ElseGenerateBranch
+
+   .. rubric:: Members
+
+.. autoclass:: IfGenerateStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IfGenerateStatement
+
+   .. rubric:: Members
+
+.. autoclass:: IndexedGenerateChoice
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndexedGenerateChoice
+
+   .. rubric:: Members
+
+.. autoclass:: RangedGenerateChoice
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RangedGenerateChoice
+
+   .. rubric:: Members
+
+.. autoclass:: GenerateCase
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: GenerateCase
+
+   .. rubric:: Members
+
+.. autoclass:: OthersGenerateCase
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OthersGenerateCase
+
+   .. rubric:: Members
+
+.. autoclass:: CaseGenerateStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: CaseGenerateStatement
+
+   .. rubric:: Members
+
+.. autoclass:: ForGenerateStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ForGenerateStatement
+
+   .. rubric:: Members
+
+.. autoclass:: WaveformElement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: WaveformElement
+
+   .. rubric:: Members
+
+.. autoclass:: ConcurrentSimpleSignalAssignment
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConcurrentSimpleSignalAssignment
+
+   .. rubric:: Members
+
+.. autoclass:: ConcurrentProcedureCall
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConcurrentProcedureCall
+
+   .. rubric:: Members
+
+.. autoclass:: ConcurrentAssertStatement
+   :members:
+   :private-members:
+   :undoc-members:
+   :inherited-members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ConcurrentAssertStatement
+
+   .. rubric:: Members

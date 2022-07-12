@@ -1,0 +1,25 @@
+pyGHDL.libghdl.vhdl.utils
+=============================
+
+.. automodule:: pyGHDL.libghdl.vhdl.utils
+
+
+.. currentmodule:: pyGHDL.libghdl.vhdl.utils
+
+
+.. #-----------------------------------
+
+
+**Functions**
+
+- :py:func:`Get_Source_Identifier`:
+  Like ``Get_Identifier`` but return a ``NameId`` for the same casing as it appears in the source file.
+
+
+
+.. #-----------------------------------
+
+**Functions**
+
+
+.. autofunction:: Get_Source_Identifier
